@@ -9,7 +9,7 @@
 1. Introduction
     GTFmerge is a C++ script written by Matthew Patrick at the University of Michigan Dermatology Department designed to produce a singular genomic annnotation containing all non-overlapping information from several input files. Gtfmergetool takes input files in Gene Transfer Format (GTF).
     The tool is designed to exclude all exons of a particular gene in which at least one exon of the gene overlaps with any exon within any input GTF file. One input file is designated as the Reference GTF (--refGTF) which serves as the base of the merged output. In the situation in which exons of genes
-    from one input GTF overlap with an exon of another input, information from the designated reference will be preserved while the gene from the other GTF (which is designated as a "Target GTF") will be discarded.                                                                         # What about in the event where 2 non-reference GTF have overlapping exons? Which is preserved?
+    from one input GTF overlap with an exon of another input, information from the designated reference will be preserved while the gene from the other GTF (which is designated as a "Target GTF") will be discarded.                                                                         # What about in the event where 2 non-reference GTF have overlapping exons? Which is preserved? GTFmerge does not merge within a GTF file, so both are preserved.
     
     
     
