@@ -47,8 +47,8 @@ int main(int argc, const char* argv[])
       int minBasePairs;
       double minPercentage;
       gtf::programOptions opt("gtfmerge v0.1 (9 March 2019)",true,2);
-      opt.addOption(minBasePairs,"minBP","Minimum number of basepairs for overlap",true,50);
-      opt.addOption(minPercentage,"minPercent","Minimum percentage for overlap)",true,20.0);
+      opt.addOption(minBasePairs,"minBP","Minimum number of basepairs for overlap",false,50);
+      opt.addOption(minPercentage,"minPercent","Minimum percentage for overlap)",false,20.0);
       opt.parse(argc,argv);
 
       if(opt.file_names.size()<2){
