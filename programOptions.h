@@ -102,7 +102,6 @@ namespace gtf{
 
          for(auto &opts : options)
             if(vm.count(opts->name)) opts->process(vm[opts->name]);
-            else if(opts->isRequired()) throw std::runtime_error("Error: --"+opts->name+" required, but not provided");
 
          if(fileOutput){
             if(vm.count("outPrefix")) outPrefix="./"+outPrefix;
@@ -119,6 +118,10 @@ namespace gtf{
             std::string text=opts->text();
             if(!text.empty()) BOOST_LOG_TRIVIAL(info)<<"\t"<<text;
          }
+         
+         for(auto &opts : options)
+            if(!vm.count(opts->name)&&opts->isRequired())
+               throw std::runtime_error("Error: --"+opts->name+" required, but not provided");
 
          if(inputFiles>=0)
             for (int fIdx=0; fIdx<file_names.size(); ++fIdx)
