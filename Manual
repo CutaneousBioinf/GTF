@@ -7,8 +7,8 @@
 
 
 1. Introduction
-    GTFmerge is a C++ script written by Matthew Patrick at the University of Michigan Dermatology Department designed to produce a singular genomic annnotation containing all non-overlapping information from several input files. Gtfmergetool takes input files in Gene Transfer Format (GTF).
-    The tool is designed to exclude all exons of a particular gene in which at least one exon of the gene overlaps with any exon within any input GTF file. One input file is designated as the Reference GTF (--refGTF) which serves as the base of the merged output. In the situation in which exons of genes
+    GTFmerge is a C++ script written by Matthew Patrick at the University of Michigan Dermatology Department designed to produce a singular genomic annnotation containing all non-overlapping information from several input files. The GTFmerge tool takes input files in Gene Transfer Format (GTF).
+    The tool is designed to exclude all exons of a particular gene in which at least one exon of the gene overlaps with any exon within any input GTF file. One input file is designated as the Reference GTF which serves as the base of the merged output. In the situation in which exons of genes
     from one input GTF overlap with an exon of another input, information from the designated reference will be preserved while the gene from the other GTF (which is designated as a "Target GTF") will be discarded.                                                                         # What about in the event where 2 non-reference GTF have overlapping exons? Which is preserved? GTFmerge does not merge within a GTF file, so both are preserved.
     
     
@@ -16,7 +16,7 @@
 2. Basic Workflow
     Gtfmergetool has the following format:
     
-    gtfmerge --"advanced option" --refGTF ["Reference.GTF"} --targetGTF ["Target.GTF"] --outDir [/path/to/directory]
+    gtfmerge --"advanced option" "Reference.GTF" "Target.GTF" --outPrefix [/path/to/directory]
     
        # Gtfmergetool can only handle two files within a single run. In order to merge several target GTF files, it is necessary to designate the merged file of one run as the --refGTF in the second run. 
     
@@ -25,19 +25,17 @@
 3. Advanced Options
 
     
-    --help                produce help message
-    --outDir arg          set output directory (default: "./")
-    --outPre arg          set output prefix (default: "")
-    --minBP arg           set minimum number basepairs for overlap (default: 50)
-    --minPct arg          set minimum percentage for overlap (default: 20.0)
-    --refGTF arg          set reference file (can be specified without the flag)
-    --targetGTF arg       set target file (can be specified without the flag)
+    --help                         produce help message
+    --outPrefix arg                set output prefix (default: "./out")
+    --minBP arg                    set minimum number basepairs for overlap (default: 50)
+    --minPercent arg               set minimum percentage for overlap (default: 20.0)
+    --numChromosomes arg           set number of numeric autosomes (default: 22)
+    --allowOtherSequenceNames arg  indicate whether to restrict to numeric autosomes
     
      
-         --outDir arg     Specifies the output directory for which output files will go. The output directory must already exist prior to issuing gtfmerge. Gtfmergetool is not designed to create output directories and can only append information to already existing directories.
-         --outPre arg     Specifies a prefix all outputting files of gtfmerge contain
+         --outPrefix arg     Specifies a prefix all outputting files of gtfmerge contain
          --minBP arg      Controls the minimum number of basepairs of overlap between two exons overwhich gtfmergetool considers an overlap. Overlaps between exons below this set number are not considered overlaps by the program and this information will be preserved in the merged file.
-         --minPct arg     Sets the minimum percentage of overlap between two exons above which gtfmergetool considers an overlap. An exon overlapping other exons within less than the set percentage of its basepairs is not considered a true overlap and is preserved.
+         --minPercent arg     Sets the minimum percentage of overlap between two exons above which gtfmergetool considers an overlap. An exon overlapping other exons within less than the set percentage of its basepairs is not considered a true overlap and is preserved.
          
          
          
